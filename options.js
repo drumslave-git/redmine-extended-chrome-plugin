@@ -31,6 +31,11 @@ const saveSpentTime = () => {
         console.log("Setting spentTimeURLB");
     });
 };
+chrome.storage.sync.get('targetHost', function(data) {
+    if (data.targetHost !== undefined) {
+        targetHost.value = data.targetHost;
+    }
+});
 chrome.storage.sync.get('redmineApiKey', function(data) {
     if (data.redmineApiKey !== undefined) {
         redmineApiKey.value = data.redmineApiKey;
