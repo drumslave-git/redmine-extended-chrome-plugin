@@ -1,0 +1,273 @@
+select[multiple="multiple"]{
+    min-height: 30vh;
+}
+
+table.list tbody tr.extendedIssue:hover{
+    background: #507aaa1f;
+    z-index: 2;
+    position: relative;
+}
+
+tr.issue.idnt td.subject{
+    background: transparent !important;
+}
+
+tr.issue.idnt td.subject:hover{
+    z-index: 2;
+}
+
+tr.issue.idnt td.subject a{
+    vertical-align: middle;
+}
+
+.extendedToggleLink{
+    margin-right: 10px;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    position: relative;
+}
+
+.extendedToggleLink .extendedExpandeImg{
+    display: inline-block;
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+}
+
+.extendedToggleLink .extendedCollapseImg{
+    display: none;
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+}
+
+.extendedToggleLink.extendedToggleLinkToExpand .extendedExpandeImg{
+    display: none;
+}
+
+.extendedToggleLink.extendedToggleLinkToExpand .extendedCollapseImg{
+    display: inline-block;
+}
+
+.extendedCollapsed{
+    display: none;
+}
+.extendedExpanded{
+    display: table-row;
+}
+
+.extendedViewTicket, .extendedAddSubTicket, .extendedIssueEditLink, .extendedIssueFilterLink{
+    font-size: 10px;
+    margin-left: 5px;
+    /*vertical-align: middle;*/
+}
+
+.extendedIssue .subject{
+    position: relative;
+}
+.extendedIssue.descriptionCheck a{
+    vertical-align: middle;
+}
+.extendedIssue.descriptionCheck .subject .extendedDescriptionCheckResult{
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(5px + .3em);
+    position: relative;
+    height: 1px;
+}
+.extendedIssue.descriptionCheck .subject .extendedDescriptionCheckResult:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    display: block;
+    width: 5px;
+    height: 5px;
+    margin-right: .3em;
+    border-radius: 100%;
+}
+.extendedIssue.descriptionCheck .subject.extendedNoDescription .extendedDescriptionCheckResult:after,
+.extendedIssue.descriptionCheck .subject.extendedShortDescription .extendedDescriptionCheckResult:after {
+    background: red;
+}
+.extendedIssue.descriptionCheck .subject.extendedShortDescription .extendedDescriptionCheckResult:after{
+    background: #bcb602;
+}
+.extendedControl{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+.extendedControl .extendedControlHandle{
+    display: inline-block;
+    font-size: 12px;
+}
+.extendedControl .extendedControlWrapper{
+    position: absolute;
+    left: 0;
+    bottom: 200%;
+    background: #eee;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    z-index: 99;
+    transition: opacity .3s, bottom .2s;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+    max-width: 100%;
+}
+
+.extendedControl a{
+    margin-left: 0;
+    margin-right: 5px;
+    white-space: nowrap;
+    font-size: 12px;
+}
+.extendedIssue.context-menu-selection .extendedControlWrapper{
+    bottom: 100%;
+    padding: 5px;
+    height: auto;
+    overflow: auto;
+    opacity: 1;
+}
+
+.extendedIssue.context-menu-selection .extendedControlWrapper a{
+    color:#169 !important;
+}
+
+.extendedControl .extendedParentsPath a{
+    vertical-align: auto;
+    white-space: nowrap;
+}
+
+.extendedControl .extendedParentsPath a:after{
+    content: '>>';
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.extendedControl .extendedParentsPath a:last-of-type:after{
+    display: none;
+}
+
+.extendedProgressWrapper{
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+    width: 200px;
+}
+
+table.progress.extendedProgress{
+    /*display: inline-block;*/
+    margin-left: 10px;
+    opacity: 1;
+    /*width: 200px;*/
+    /*height: 10px;*/
+    /*border: 1px solid;*/
+    /*vertical-align: middle;*/
+    position: relative;
+    transition: opacity .3s;
+    float: none;
+    width: 100%;
+}
+table.progress.extendedProgress.done{
+    opacity: 0;
+}
+
+table.progress.extendedProgress td{
+    padding: 0;
+    height: 16px;
+    vertical-align: middle;
+}
+
+.extendedProgress .closed{
+    /*position: absolute;*/
+    /*height: 100%;*/
+    width: 0;
+    /*background: green;*/
+    position: relative;
+}
+.extendedProgress .todo{
+    width: 100%;
+}
+.extendedProgress .extendedProgressText{
+    display: inline-block;
+    color: #fff;
+    font-size: 80%;
+    opacity: 0;
+    transition: opacity .3s;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.extendedProgress .extendedProgressText.visible{
+    opacity: 1;
+}
+
+.extendedPopupBG{
+    background: rgba(0, 0, 0, .5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+}
+.extendedPopup{
+    background: white;
+    position: fixed;
+    width: 90vw;
+    height: 90vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.extendedPopupContent{
+    max-height: 100%;
+    overflow: auto;
+}
+
+.extendedPopupClose{
+    position: fixed;
+    right: -20px;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    background: white;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.extendedMessage{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 10px;
+    background: #000;
+    color: #fff;
+}
+.extendedMessage.error{
+    background: red;
+}
+
+.collapsibleRoadMapTbody.hidden{
+    display: none;
+}
+
+.collapsibleRoadMapCaption{
+    color: #169;
+    cursor: pointer;
+    background: #eeeeee;
+}
+
+
+.collapsibleRoadMapCaption.active{
+    font-weight: bold;
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Redmine Extended",
+  "version": "1.0.8",
+  "description": "Adds some extended redmine functionality",
+  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icon_16.png",
+      "32": "images/icon_32.png",
+      "48": "images/icon_48.png",
+      "128": "images/icon_128.png"
+    }
+  },
+  "icons": {
+    "16": "images/icon_16.png",
+    "32": "images/icon_32.png",
+    "48": "images/icon_48.png",
+    "128": "images/icon_128.png"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "css": ["myStyles.css"],
+      "js": ["RedmineExtender.js","contentScript.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    "images/*.png"
+  ],
+  "manifest_version": 2
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redmine Extended Options</title>
+    <style>
+        td{
+            padding: 10px;
+        }
+        .button{
+            display: block !important;
+            color: #eee;
+            text-decoration: none;
+            cursor: pointer;
+            background: #3369ff;
+            padding:0.7em 1.7em;
+            margin: 1em;
+            border-radius:0.2em;
+            transition: box-shadow .3s, background-color .3s;
+            box-shadow:inset 0 -0.6em 1em -0.35em rgba(0,0,0,0.17),inset 0 0.6em 2em -0.3em rgba(255,255,255,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+            text-align: center;
+            position: relative;
+        }
+        .button:hover{
+            box-shadow:inset 0 0.6em 2em -0.3em rgba(0,0,0,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+        }
+        .button span{
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+<h1>Redmine Extended</h1>
+<strong>List of features:</strong>
+<br>
+<p>Can be switched on and off in popup of this extension.</p>
+<ul>
+    <li>Fordable list of subtassks</li>
+    <li>Converting decimal time to hh:mm form for estimation and remaining time of subtickets (Convert Time ON/OFF)</li>
+    <li>Change font size based on how many levels subticket has (Change Font On/OFF)</li>
+    <li>Search for subtickets (Search ON/OFF)</li>
+    <li>
+        API integration (Use API ON/OFF):
+        <ul>
+            <li>Remaining time (based on estimation and % of done)</li>
+            <li>Estimation time for subtasks</li>
+            <li>Parents path for subtasks (visible on hover or in Ex. Menu if turned on)</li>
+        </ul>
+    </li>
+    <li>
+        Check length of description (Check Description ON/OFF):
+        <ul>
+            <li>Will work only if Use API is ON</li>
+            <li>Tickets that got no description will be marked with red color</li>
+            <li>Tickets that got description shorter than minimum characters length (separate input) will be marked with dark yellow color</li>
+        </ul>
+    </li>
+    <li>
+        Extend Roadmap info (Extend Roadmap info ON/OFF):
+        <ul>
+            <li>Will work only if Use API is ON</li>
+            <li>Append additional info:
+                <ul>
+                    <li>Done percentage</li>
+                    <li>Remaining time</li>
+                    <li>Assignee</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        Allow to collapse/expand Roadmap parts (Collapsible Roadmap ON/OFF)
+    </li>
+    <li>
+        Replace ID of issue with its title in WIKI content (Swap Issue Info ON/OFF)
+    </li>
+    <li>
+        New actions available for selected subticket (Ex. Menu ON/OFF):
+        <ul>
+            <li>View - view issue in popup without redirect</li>
+            <li>Edit - same edit functionality, but will redirect to previous page after save</li>
+            <li>Add here - create new ticket as subticket for current one</li>
+            <li>Filter - create a filter for subtickets of current one</li>
+        </ul>
+    </li>
+</ul>
+<h2>Set some configs!</h2>
+<p>
+    Buttons with this links will be visible in popup of this extension.
+</p>
+<table>
+    <tbody>
+        <tr>
+            <td>
+                Target host
+            </td>
+            <td>
+                <input type="input" id="targetHost" placeholder="redmine.com">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Redmine API key
+            </td>
+            <td>
+                <input type="input" id="redmineApiKey">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Misk report URL
+            </td>
+            <td>
+                <input type="url" id="miskReportURLButton" placeholder="https://">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Dev report URL
+            </td>
+            <td>
+                <input type="url" id="devReportURLButton" placeholder="https://">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Spent time URL
+            </td>
+            <td>
+                <input type="url" id="spentTimeURLButton" placeholder="https://">
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                <a href="#" class="button" target="_blank" id="save">SAVE</a>
+            </td>
+            <td style="text-align: center">
+                <a href="#" class="button" target="_blank" id="reset">RESET ALL</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+<script src="options.js"></script>
+</html>
