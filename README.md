@@ -1,4 +1,4 @@
-# redmine-extended-chrome-plugin
+# Redmine Extended - chrome plugin
 Chrome extension that provides some additional features to redmine
 
 Can be switched on and off in popup of this extension.
