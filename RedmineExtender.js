@@ -16,6 +16,7 @@ class RedmineExtender {
             replaceIdWithTitle = false,
             extendRoadMap = false,
             collapsibleRoadMap = false,
+            todoExtended = false,
             searchBy = 'all',
             baseUrl = null,
             currentHref = null,
@@ -44,6 +45,7 @@ class RedmineExtender {
         this.replaceIdWithTitle = replaceIdWithTitle;
         this.extendRoadMap = extendRoadMap;
         this.collapsibleRoadMap = collapsibleRoadMap;
+        this.todoExtended = todoExtended;
         this.searchBy = searchBy;
         this.baseUrl = baseUrl;
         this.currentHref = currentHref;
@@ -1196,6 +1198,97 @@ class RedmineExtender {
                         })
                     }
                 }
+            }
+        }
+    };
+
+    injectTODOExtended = () => {
+        if(this.todoExtended){
+            function addInput(target) {
+                const text = target.innerText;
+                const newText = prompt("Edit comment", text);
+                target.innerText = newText || '';
+                const itemId = target.parentElement.id.match(/\d+/)[0];
+                let issueId = target.parentElement.querySelector('td.id');
+                issueId = issueId ? issueId.innerText : ''
+                const order = [...document.querySelector('#issue-todo-list-table')
+                    .querySelectorAll('tr[id|="issue"]')]
+                    .map(tr => tr.id.match(/\d+$/)[0]);
+                const fd = new FormData();
+                fd.append('item[comment]', newText);
+                fd.append('item[issue_id]', issueId);
+                const token = document.querySelector('meta[name="csrf-token"]').content;
+                fetch(`${location.href}/items/${itemId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-Token': token
+                    }
+                })
+                .then(_ => {
+                    return fetch(`${location.href}/items`,
+                        {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-Token': token
+                            },
+                            body: fd
+                        }
+                    )
+                })
+                    .then(resp => {
+                        resp.text().then(body => {
+                            const items = body.match(/issue-todo-list-item-\d+/gm).map(id => id.match(/\d+/)[0]);
+                            let newItemId = null;
+                            for(const item of items){
+                                if(order.indexOf(item) === -1){
+                                    newItemId = item;
+                                }
+                            }
+                            if(!newItemId){
+                                return;
+                            }
+                            const fd = new FormData();
+                            const newOrder = [...order];
+                            newOrder.splice(order.indexOf(itemId), 1, newItemId);
+                            newOrder.forEach(item => {
+                                fd.append('item[]', item);
+                            })
+                            fetch(`${location.href}/update_item_order`,
+                                {
+                                    method: 'POST',
+                                    headers: {
+                                        'X-CSRF-Token': token
+                                    },
+                                    body: fd
+                                }).then(_ => {
+                                    document.getElementById(`issue-todo-list-item-${itemId}`)
+                                        .id = `issue-todo-list-item-${newItemId}`
+                            })
+                        })
+                    })
+            }
+            if(location.href.match(/\/issue_todo_lists\/\d+/)){
+                document.querySelector('#issue-todo-list-table').addEventListener('dblclick', function (e) {
+                    if(e.target.tagName.toLowerCase() === 'td'){
+                        let parent = e.target.parentElement;
+                        while(parent && parent.tagName.toLowerCase() !== 'tr'){
+                            parent = parent.parentElement;
+                        }
+
+                        if(parent && parent.id.match(/^issue-.*\d+$/)){
+                            if(
+                                parent.querySelector(':scope > td.done_ratio + td') === e.target
+                                ||
+                                parent.querySelector(':scope > td[colspan]') === e.target
+                            ){
+                                e.preventDefault();
+                                e.stopPropagation();
+                                addInput(e.target);
+                            }
+                        }
+
+                    }
+                })
             }
         }
     };

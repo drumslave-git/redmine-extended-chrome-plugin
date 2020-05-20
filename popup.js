@@ -52,6 +52,7 @@ const checkboxs = {
     replaceIdWithTitle: 'Swap Issue Info',
     extendRoadMap: 'Extend Roadmap info',
     collapsibleRoadMap: 'Collapsible Roadmap',
+    todoExtended: 'TODO Extended',
 };
 
 Object.keys(checkboxs).forEach(id => createCheckbox(id, checkboxs[id]));

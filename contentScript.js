@@ -13,6 +13,7 @@ chrome.storage.sync.get([
     'replaceIdWithTitle',
     'extendRoadMap',
     'collapsibleRoadMap',
+    'todoExtended',
 ], function(data) {
     const {
         globalOn = true,
@@ -29,6 +30,7 @@ chrome.storage.sync.get([
         replaceIdWithTitle = false,
         extendRoadMap = false,
         collapsibleRoadMap = false,
+        todoExtended = false,
     } = data;
 
     if(!globalOn){
@@ -63,6 +65,7 @@ chrome.storage.sync.get([
             replaceIdWithTitle,
             extendRoadMap,
             collapsibleRoadMap,
+            todoExtended,
             chrome,
             baseUrl
         });
@@ -76,6 +79,7 @@ chrome.storage.sync.get([
             re.doReplaceIdWithTitle();
             re.injectExtendedRoadMapInfo();
             re.injectCollapsibleRoadMap();
+            re.injectTODOExtended();
         })
     })
 });

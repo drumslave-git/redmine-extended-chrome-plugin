@@ -16,6 +16,7 @@ const settings = {
     replaceIdWithTitle: false,
     extendRoadMap: false,
     collapsibleRoadMap: false,
+    todoExtended: false,
 };
 
 chrome.runtime.onInstalled.addListener(function() {
