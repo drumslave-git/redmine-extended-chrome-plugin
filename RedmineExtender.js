@@ -1262,7 +1262,11 @@ class RedmineExtender {
                                     body: fd
                                 }).then(_ => {
                                     document.getElementById(`issue-todo-list-item-${itemId}`)
-                                        .id = `issue-todo-list-item-${newItemId}`
+                                        .id = `issue-todo-list-item-${newItemId}`;
+                                    const a = document.querySelector(`#issue-todo-list-item-${newItemId} a[href="items/${itemId}"]`);
+                                    a.href = a.href.replace(/(\/items\/)(\d+)/, function (m, g1) {
+                                        return `${g1}${newItemId}`;
+                                    })
                             })
                         })
                     })
